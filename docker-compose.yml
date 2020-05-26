@@ -1,0 +1,43 @@
+version: '2.3'
+
+services:
+  tpat_webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tpat_webapp
+    restart: unless-stopped
+    depends_on:
+      - tpatDatabase
+    ports:
+      - "8009:8009"
+      - "8080:8080"
+    mem_limit: 4g
+    logging:
+      options:
+        max-size: "5m"
+        max-file: "3"
+      driver: "json-file"
+    volumes: 
+      - /opt/tpat/files
+      - /opt/tpat/lucene
+    command: ["./wait-for-it.sh", "tpatDatabase:3306","--","catalina.sh", "run"]
+
+
+  tpatDatabase:
+    image: mariadb:10.3
+    container_name: tpatDatabase
+    restart: unless-stopped
+    ports:
+    - "3356:3306"
+    healthcheck:
+      test: "/usr/bin/mysql --user=tpat_user \"--password=tpat_pw_11\" --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 2s
+      retries: 5
+    environment:
+    - MYSQL_USER=tpat_user
+    - MYSQL_PASSWORD=tpat_pw_11
+    - MYSQL_ROOT_PASSWORD=tpat_pw_11
+    - MYSQL_DATABASE=tpat_db
+
