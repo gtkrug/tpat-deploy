@@ -1,6 +1,6 @@
 
 # Trustmark Policy Authoring Tool - Deployer
-This repository holds the binary code for the TPAT along with the requisite Docker configuration to standup a copy of the tool for anyone interested in running their own copy of the TPAT.
+This repository holds the Docker configuration to standup a copy of the tool for anyone interested in running their own copy of the TPAT.
 
 ## How to Use
 
