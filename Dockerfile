@@ -4,6 +4,8 @@ ADD https://trustmarkinitiative.org/software/tpat-1.0.war /tmp/tpat.war
 RUN unzip -d /usr/local/tomcat/webapps/tpat /tmp/tpat.war
 COPY tpat_config.properties /usr/local/tomcat/webapps/tpat/WEB-INF/classes
 COPY ./images/banner.png /usr/local/tomcat/webapps/artifacts/assets/tmi-header-56eb1cb69ffde28907e0a78527bbd88d.png
+COPY ./images/favicon.ico /usr/local/tomcat/webapps/ROOT/
+COPY ./images/favicon.ico /usr/local/tomcat/webapps/tpat/
 ENV JAVA_OPTS="-XX:+UseParallelGC"
 CMD ["catalina.sh", "run"]
 

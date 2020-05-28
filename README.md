@@ -16,17 +16,19 @@ This repository holds the Docker configuration to standup a copy of the tool for
 
     There are numerous other fields that can editted to set default values, but only the above are absolutely critical to get started with using the tool.
 
-4. If you are hosting the TPAT at a url that doesn't include a "/tpat/" at the end of the URL, you will need to update the ``Dockerfile`` to change the path location the tool runs at within docker.  The following three lines must be updated so that the path in the ***base.url*** matches the sub-directory of webapps where the tool is posted.  In the default files all three of these paths are **tpat**):
+4. If you are hosting the TPAT at a url that doesn't include a "/tpat/" at the end of the URL, you will need to update the ``Dockerfile`` to change the path location the tool runs at within docker.  The following four lines must be updated so that the path in the ***base.url*** matches the sub-directory of webapps where the tool is posted.  In the default files all four of these paths are **tpat**):
 
 > RUN unzip -d /usr/local/tomcat/webapps/**tpat** /tmp/tpat.war   
 > COPY tpat_config.properties /usr/local/tomcat/webapps/**tpat**/WEB-INF/classes   
 > COPY ./images/banner.png /usr/local/tomcat/webapps/**tpat**/assets/tmi-header-6c6f1a43dfc14aaab266274bdaac780b.png
+> COPY ./images/favicon.ico /usr/local/tomcat/webapps/**tpat**/
 
-5. You may wish to update the header/banner image of the tool.  Do this by simply replacing the ``banner.png`` file within the images directory.  
 
-6. Build the docker image by running ``docker-compose build``.
+5. You may wish to update the header/banner image of the tool or the favorite icon.  Do this by simply replacing the ``banner.png`` or the ``favicon.ico`` file within the images directory.  
 
-7. While the method for running the tool may vary, if using docker-compose within a server environment with the docker environment, simply run by ``docker-compose up -d``. 
+6. Build the docker image by running ``docker-compose build`` from the directory containing this project.
+
+7. While the method for running the tool may vary if running a public facing site, if running locally, you can typically start it up by simply running ``docker-compose up -d`` from the directory you downloaded this repository.
 
 8. Typically docker is proxied with a webserver that will provide TLS if you intend for your TPAT to be Internet accessible.  There is plenty of documentation available on how to do this, but if you need help with this, you can contact help@trustmarkinitiative.org.
 
