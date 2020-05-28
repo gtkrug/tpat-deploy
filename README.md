@@ -18,8 +18,8 @@ This repository holds the Docker configuration to standup a copy of the tool for
 
 4. If you are hosting the TPAT at a url that doesn't include a "/tpat/" at the end of the URL, you will need to update the ``Dockerfile`` to change the path location the tool runs at within docker.  The following three lines must be updated so that the path in the ***base.url*** matches the sub-directory of webapps where the tool is posted.  In the default files all three of these paths are **tpat**):
 
-> RUN unzip -d /usr/local/tomcat/webapps/**tpat** /tmp/tpat.war
-> COPY tpat_config.properties /usr/local/tomcat/webapps/**tpat**/WEB-INF/classes
+> RUN unzip -d /usr/local/tomcat/webapps/**tpat** /tmp/tpat.war   
+> COPY tpat_config.properties /usr/local/tomcat/webapps/**tpat**/WEB-INF/classes   
 > COPY ./images/banner.png /usr/local/tomcat/webapps/**tpat**/assets/tmi-header-6c6f1a43dfc14aaab266274bdaac780b.png
 
 5. You may wish to update the header/banner image of the tool.  Do this by simply replacing the ``banner.png`` file within the images directory.  
