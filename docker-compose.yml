@@ -21,7 +21,6 @@ services:
     volumes: 
       - /opt/tpat/files
       - /opt/tpat/lucene
-    command: ["./wait-for-it.sh", "tpatDatabase:3306","--","catalina.sh", "run"]
 
 
   tpatDatabase:
